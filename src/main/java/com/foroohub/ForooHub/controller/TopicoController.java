@@ -6,9 +6,11 @@ import com.foroohub.ForooHub.domain.curso.dto.DatosDetallesCurso;
 import com.foroohub.ForooHub.domain.topico.Topico;
 import com.foroohub.ForooHub.domain.topico.TopicoRepositorio;
 import com.foroohub.ForooHub.domain.topico.dto.DatosActualizarTopico;
+import com.foroohub.ForooHub.domain.topico.dto.DatosCrearTopico;
 import com.foroohub.ForooHub.domain.topico.dto.DatosDetalleTopico;
 import com.foroohub.ForooHub.domain.topico.dto.DatosListarTopico;
 import com.foroohub.ForooHub.domain.usuario.UsuarioRepositorio;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +37,7 @@ public class TopicoController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity<DatosDetallesCurso> crear(@RequestBody @Valid DatosCrearCurso datos, UriComponentsBuilder uriBuilder){
+    public ResponseEntity<DatosDetalleTopico> crear(@RequestBody @Valid DatosCrearTopico datos, UriComponentsBuilder uriBuilder){
         var autor = usuarioRepositorio.findById(datos.idautor())
                 .orElseThrow(() -> new IllegalArgumentException("Usuario no encontrado"));
 
@@ -46,7 +48,7 @@ public class TopicoController {
         topicoRepositorio.save(topico);
 
         var uri = uriBuilder.path("/topicos/{id}").buildAndExpand(topico.getId()).toUri();
-        return ResponseEntity.created(uri).body(new DatosDetallesCurso(topico));
+        return ResponseEntity.created(uri).body(new DatosDetalleTopico(topico));
 
 
     }
@@ -103,4 +105,4 @@ public class TopicoController {
 
 }
 
-}
+

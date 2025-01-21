@@ -3,6 +3,7 @@ package com.foroohub.ForooHub.domain.topico;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.foroohub.ForooHub.domain.curso.Curso;
 import com.foroohub.ForooHub.domain.curso.CursoRepositorio;
+import com.foroohub.ForooHub.domain.respuesta.Respuesta;
 import com.foroohub.ForooHub.domain.topico.dto.DatosActualizarTopico;
 import com.foroohub.ForooHub.domain.topico.dto.DatosCrearTopico;
 import com.foroohub.ForooHub.domain.usuario.Usuario;
@@ -13,6 +14,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
     @Table(name= "topicos")
@@ -106,4 +108,4 @@ import java.time.LocalDateTime;
         }
     }
 
-}
+
